@@ -8,12 +8,12 @@
 		</view>
 		<!-- 信息录入区域 -->
 		<view class="formStyle">
-			<u-form :model="user" ref="uForm">
+			<u-form :model="accountInfo" ref="uForm">
 				<u-form-item label="手机号" label-width="150" left-icon='phone'>
-					<u-input v-model="user.phone" type="number" maxlength="11" placeholder="请输入手机号"/>
+					<u-input v-model="accountInfo.phone" type="number" maxlength="11" placeholder="请输入手机号"/>
 				</u-form-item>
 				<u-form-item label="验证码" label-width="150" left-icon='lock'>
-					<u-input v-model="user.verifiCode" type="number" maxlength="6" :clearable='false' placeholder="请输入验证码"/>
+					<u-input v-model="accountInfo.verifiCode" type="number" maxlength="6" :clearable='false' placeholder="请输入验证码"/>
 					<u-button @tap="getCode" size="mini">{{tips}}</u-button>
 					<u-verification-code :seconds="seconds" @end="end" @start="start" ref="uCode" 
 							@change="codeChange"></u-verification-code>
@@ -62,7 +62,7 @@
 				src: require('@/static/img/logo.png'),
 				tips: '',
 				seconds: 10,
-				user : {
+				accountInfo : {
 					phone : '19992454529',
 					verifiCode : '924452',
 				},
@@ -113,14 +113,24 @@
 			    }
 			    this.$lu.vuex('vuexBaseUrl', baseUrl);
 			},
-			login(){
+			// 登录
+			async login(){
 				this.isLoad = true;
 				this.loginText = ' 登录中';
-				setTimeout(()=>{
-					this.$routes.switchTab('/pages/home/home');
+				let res = await this.$api.loginApi.login( this.accountInfo );
+				if(res.data.code !== 200){
 					this.isLoad = false;
-					this.loginText = ' 重新登录';
-				},2000)
+					this.loginText = '重新登录';
+					return
+				}
+				// 存储token
+				this.$u.vuex('vuex_token', res.data.token);
+				// 存储用户信息
+				this.$u.vuex( 'vuex_userinfo', {
+					username: res.data.username || '',
+					phone: res.data.phone || '',
+				})
+				this.$routes.delaySwitchTabRouter('/pages/home/home', 2000);
 			},
 			changeLoginState(){
 				this.$iipKit.toast('账号密码登录触发了');
@@ -129,6 +139,10 @@
 				this.$routes.to('/pages/login/register')
 			}
 		},
+		onUnload() {
+			this.isLoad = false;
+			this.loginText = ' 登录';
+		}
 	}
 </script>
 <style scoped lang="scss">
