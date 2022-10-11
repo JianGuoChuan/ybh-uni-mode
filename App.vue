@@ -1,11 +1,9 @@
 <script>
 	export default {
 		data(){
-			return {
-				
-			}
+			return {}
 		},
-		async onLaunch() {
+		onLaunch() {
 			// 设置预设主题
 			if( !this.vuex_themeColor.colorCode ){
 				this.$u.vuex('vuex_themeColor',{
@@ -15,13 +13,10 @@
 					colorTitle: "魔幻蓝"
 				});
 			}
- 			// #ifdef APP-PLUS
-			// 获取app版本信息 用于版本更新
-			let res = await this.$iipKit.checkVersion(this);
-			this.$u.vuex('vuex_versionCode',res)
-			// #endif
-			// 打开注释 模拟更新
-			// this.$u.vuex('vuex_versionCode',101)
+			// 检测版本更新 简易模式
+			// this.$iipKit.checkVersion(this);
+			// 检测版本更新 强化进阶模式 【须在真机环境运行】
+			// this.$iipKit.checkVersionPlus(this);
 		},
 	}
 </script>
