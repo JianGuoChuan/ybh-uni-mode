@@ -33,6 +33,7 @@ Vue.use(httpInterceptor, app);
 import httpApi from '@/common/api/http.api.js';
 Vue.use(httpApi, app);
 app.$mount();
+
 //处理请求时的异常广播
 let catchCount = {
     curr:0,
@@ -46,11 +47,10 @@ const toast = function(msg) {
         duration: 2000
     })
 }; 
+// 消息监听
 uni.$on('requestUnhandledRejection', function(event) {
-    if (catchCount.last > 1) {
-        return;
-    }
-    let msg = event.msg || event.data.msg || event.errMsg;
+    if (catchCount.last > 1) { return;}
+    let msg = event.msg || event.data.msg;
     if (msg) {
         toast(msg); 
     }
