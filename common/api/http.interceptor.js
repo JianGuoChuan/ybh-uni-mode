@@ -28,7 +28,7 @@ const install = (Vue, vm) => {
 		originalData: true,
 		// 设置自定义头部content-type
 		header: {
-			'content-type': 'application/x-www-form-urlencoded;charset=UTF-8'
+			'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
 		}
 	});
 	
