@@ -252,6 +252,54 @@
 			    }
 			}
 		},{
+			"path": "pages/tools/charts",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/tools/charts/column",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/tools/charts/line",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/tools/charts/pie",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/tools/charts/gauge",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/tools/charts/candle",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		},{
 			"path": "pages/other/router_page",
 			"style": {
 				"navigationStyle": "custom",
