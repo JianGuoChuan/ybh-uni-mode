@@ -29,7 +29,7 @@
 			<view>
 				<text>● 1）以上配置到全局后，就可以直接使用 ：</br>
 					<strong>this.$api.自定义请求js配置的文件名.自定义请求方法名(请求参数)</strong>；</text></br>
-				<text>● 2）示例：</br><strong>this.$api.loginApi.login(username,userpassword)</strong></text></br>
+				<text>● 2）示例：</br><strong>this.$api.testApi.test()</strong></text></br>
 				<text class="text-bdBlue font-underline margin-left-md" @tap='request'>亲自体验（控制台查看）</text>
 			</view>
 			<view class="padding-tb-lgx padding-lr-md font-indent">
@@ -46,7 +46,7 @@
 		},
 		methods:{
 			async request(){
-				let res = await this.$api.userApi.searchPwdIsDefault();
+				let res = await this.$api.otherApi.test();
 				//查看打印值
 				console.log(res);
 			}
