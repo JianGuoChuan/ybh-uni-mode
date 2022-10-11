@@ -1,7 +1,9 @@
 import qs from 'qs';
 import legalCheck from './legalCheck.js';
-
-// 版本比较 如果v1>v2返回true
+import appUpdate from '@/common/js/appUpdate.js'; // 引入更新弹框生成方法库
+let appUpdateUrl = '';
+let appUpdateType = 1;
+// 版本比较 如果v1>v2返回 true
 function compareVersion(v1, v2) {
     try {
         var v1Arr = v1.split('.');
@@ -19,39 +21,7 @@ function compareVersion(v1, v2) {
         return false;
     }
 }
-
 let kit = {
-    // 延迟跳转系列
-    delayBack(delay = 1000,delta = 1) {
-        setTimeout(() => {
-            uni.navigateBack({
-				delta: delta
-            });
-        }, delay);
-    },
-	delayToRouter(path,delay = 1000,data){
-		setTimeout(() => {
-		    let toUrl = path + '?' + qs.stringify(data);
-		    uni.navigateTo({
-		    	url : toUrl
-		    })
-		}, delay);
-	},
-	delayReLaunchRouter(path,delay = 1000,data){
-		setTimeout(() => {
-		    let toUrl = path + '?' + qs.stringify(data);
-		    uni.reLaunch({
-		    	url : toUrl
-		    })
-		}, delay);
-	},
-	delaySwitchTabRouter(path,delay = 1000){
-		setTimeout(() => {
-		    uni.switchTab({
-		    	url : path
-		    })
-		}, delay);
-	},
 	// 复制文本
 	copyText(copyValue){
 		let that = this;
@@ -183,19 +153,6 @@ let kit = {
 		});
 		return oldPass
 	},
-	// 获取app信息
-	getAppName() {
-	    return new Promise((reslove, reject) => {
-	        let appName = uni.getStorageSync('_appName');
-	        if (appName) {
-	            reslove(appName);
-	        }
-	        plus.runtime.getProperty(plus.runtime.appid, (appInfo) => {
-	            uni.setStorageSync('_appName', appName);
-	            reslove(appInfo.name);
-	        })
-	    });
-	},
     // 通用确认方法 @param {Object} content
     confirm(content, option = {}) {
         return new Promise((reslove, reject) => {
@@ -225,47 +182,53 @@ let kit = {
     toast(title, option = { icon: 'none', position: 'bottom', duration: 2000}) {
         uni.showToast( Object.assign({title}, option));
     },
-    
-    // 检查更新
+    // 获取app信息
+    getAppName() {
+        return new Promise((reslove, reject) => {
+            let appName = uni.getStorageSync('_appName');
+            if (appName) { reslove(appName); }
+            plus.runtime.getProperty( plus.runtime.appid, (appInfo) => {
+                uni.setStorageSync('_appName', appName);
+                reslove(appInfo.name);
+            });
+        });
+    },
+    // 检查更新 快速理解模式
     async checkVersion(vm, isAuto = true) {
+		// 获取app名称 真实环境启用下方代码
+		let appName = 'ybh-uniui-mode';
 		// 获取app名称
-        let appName = await this.getAppName();
-		
+		// let appName = await this.getAppName();
+		// -----------------------------
 		// 是否自动检测更新
-        if (isAuto) {
-            this.toast('检查更新中...');
-        }
-		
+        if (isAuto) { this.toast('检查更新中...'); }
+		// -----------------------------
 		// 获取app更新信息
-        // let versionInfo = await vm.$u.get('/m/getVersionInfo', {
-        //     appName
-        // });
-		
+        let {data:versionInfo} = await vm.$u.get('/checkVersion');
+		// -----------------------------
+		// 获取当前版本信息 真实环境启用下方代码
+		var currVersion = '2.0.0'
         // 获取当前版本信息 
-        var currVersion = plus.runtime.version;
-		console.log(currVersion);
-		var minVersion = '13.2.15';
-		var maxVersion = '13.2.17';
-        // var minVersion = versionInfo.min || '0.0.1';
-        // var maxVersion = versionInfo.max || '0.0.1';
-        if (compareVersion(minVersion, currVersion)) {
+        // var currVersion = plus.runtime.version;
+        var minVersion = versionInfo.data.minVersion || '0.0.1';
+        var maxVersion = versionInfo.data.maxVersion || '0.0.1';
+		// -----------------------------
+        if ( compareVersion( minVersion, currVersion ) ) {
             // 当前版本小于最低可用版本
-            // let ack = await this.confirm('当前版本已不可用,请立即更新', '提示');
-            // if (ack) {
-            //     this.updateApp(vm);
-            // } else {
-            //     plus.runtime.quit();
-            // }
-			return 101
-        } else if (compareVersion(maxVersion,currVersion)) {
-            // let ack = await this.confirm('有新版本发布,是否更新?', '提示');
-            // if (ack) {
-            //     setTimeout(()=>{
-            //         this.updateApp(vm);
-            //     });
-            // }
-			return 100
-        } else if (!isAuto) {
+            let ack = await this.confirm('当前版本已不可用,请立即更新');
+            if (ack) {
+                this.updateApp(vm);
+            } else {
+                plus.runtime.quit();
+            }
+        } else if ( compareVersion( maxVersion, currVersion ) ) {
+			let ack = await this.confirm('有新版本发布,是否更新?');
+            if (ack) {
+                setTimeout(()=>{
+                    this.updateApp(vm);
+                });
+            }
+        } else if ( !isAuto ) {
             this.toast('当前已是最新版本');
         }
     },
@@ -365,35 +328,178 @@ let kit = {
                 },3000);
             }
         }
-
         function getTotalSize(task) {
-            if (task.totalSize) {
-                return task.totalSize;
-            }
+            if (task.totalSize) { return task.totalSize; }
             // 若后端获取不到,则获取默认值
             return uni.getStorageSync('appTotalSize') || 17281840;
         }
     },
     async updateApp(vm) {
 		this.toast('已开始下载');
+		// 暂时只支持app更新app
         // #ifndef APP-PLUS
-        // 暂时只支持app更新app
-        return;
-        // #endif
-        // let appName = await this.getAppName();
-        // plus.nativeUI.closeWaiting();
-        // uni.appUpdateProgress = 0;
-        // plus.nativeUI.showWaiting("下载中...");
-        // let filePath = await this.downloadApp(vm,appName);
-        // console.log(filePath);
-        // plus.nativeUI.closeWaiting();
-        // plus.nativeUI.showWaiting("更新中...");
-        // plus.runtime.install(filePath, {}, function() {
-        //     plus.nativeUI.closeWaiting();
-        // }, function(e) {
-        //     plus.nativeUI.closeWaiting();
-        //     plus.nativeUI.toast("安装失败[" + e.code + "]:" + e.message);
-        // }); 
+        let appName = await this.getAppName();
+        plus.nativeUI.closeWaiting();
+        uni.appUpdateProgress = 0;
+        plus.nativeUI.showWaiting("下载中...");
+        let filePath = await this.downloadApp(vm,appName);
+        console.log(filePath);
+        plus.nativeUI.closeWaiting();
+        plus.nativeUI.showWaiting("更新中...");
+        plus.runtime.install(filePath, {}, function() {
+            plus.nativeUI.closeWaiting();
+        }, function(e) {
+            plus.nativeUI.closeWaiting();
+            plus.nativeUI.toast("安装失败[" + e.code + "]:" + e.message);
+        }); 
+		// #endif
     },
+	
+	// 检查更新 进阶模式
+	async checkVersionPlus(vm, isAuto = true){
+		// 获取app名称 真实环境启用下方代码
+		let appName = 'ybh-uniui-mode';
+		// 获取app名称
+		// let appName = await this.getAppName();
+		// ----------------------------------------
+		// 是否自动检测更新
+		if (!isAuto) { this.toast('检查更新中...'); }
+		// ----------------------------------------
+		// 获取当前版本信息 真实环境启用下方代码
+		var currVersion = '2.0.0'
+		// 获取当前版本信息
+		// var currVersion = plus.runtime.version;
+		// ----------------------------------------
+		// 后台获取是否存在需更新版本
+		// let { data:versionInfo } = await vm.$api.otherApi.checkAPPVersion({ appName });
+		let { data:versionInfo } = await vm.$api.otherApi.checkVersion('/checkVersion');
+		// let versionInfo = { minVersionCode: '1.0.0', maxVersionCode: '13.3.14', appDownloadUrl: '', updateInfo: '修复已知Bug'}; // 模拟数据
+		var minVersion = versionInfo.data.minVersion || '1.0.0';
+		var maxVersion = versionInfo.data.maxVersion || '1.0.0';
+		var updateInfo = versionInfo.data.updateContent || '修复已知Bug';
+		appUpdateUrl = versionInfo.data.downloadUrl || ''; // 存储更新链接
+		// 已安装版本与远端版本比较
+		if ( compareVersion(minVersion, currVersion)) {
+			appUpdateType = 0;
+		    // 当前版本小于最低可用版本 强制更新
+			// this.showUpdatePopup(this, maxVersion, updateInfo, 'forcibly', appUpdateUrl)
+		} else if (compareVersion(maxVersion, currVersion)) {
+			appUpdateType = 1;
+			// 存在更新 但大于最低版本要求 无需强制更新
+			this.showUpdatePopup(this, maxVersion, updateInfo, 'solicit', appUpdateUrl)
+		} else if (!isAuto) {
+			// 无更新
+		    this.toast('当前已是最新版本');
+		}
+	},
+	// 进阶更新弹框显示入口及信息配置
+	showUpdatePopup(vm, version, updateInfo, updateType, appUpdateUrl){
+		// #ifdef APP-PLUS
+		appUpdate.updatePopup( {
+			id: 5,
+			type: 1101,
+			versionCode: 120,
+			versionName: version, // 版本号
+			versionInfo: `更新内容 \\n ${updateInfo}`, // 更新内容
+			// versionInfo: `更新内容 \\n 1.支持检测版本是否存在更新 \\n 2.修复已知bug`,
+			updateType: updateType,// 'forcibly,solicit'  // 更新类型 是否强制更新
+			downloadUrl: appUpdateUrl, // 更新链接
+			createdTime: "2022-09-24 09:02:54",
+			updatedTime: "2022-09-24 09:04:52",
+			deletedTime: null
+		}, ()=> {
+			// 点击的回调
+			this.updateAppPlus(vm);
+		})
+		// #endif
+	},
+	// 进阶APP下载
+	downloadAppPlus( vm, appName ) {
+	    // var url = `${vm.vuexBaseUrl}/m/file/downloadApp?name=${appName}`;
+		var url = appUpdateUrl; // 下载链接
+		let apkName = appUpdateUrl.split('/')[6]; // 下载app名称
+	    return new Promise((reslove, reject) => {
+	        let intervalId;
+	        // 下载前删除之前的apk文件
+	        uni.removeSavedFile({ filePath:`_downloads/${apkName}.apk` })
+	        let dtask = plus.downloader.createDownload(url, {
+	            filename: `_downloads/${apkName}.apk`,
+	            priority: 10,
+	        }, function(task, status) {
+	            if (status == 200) {
+	                reslove(task.filename);
+	            } else {
+	                reject(task);
+	            }
+	        });
+			try {
+				dtask.start(); // 开启下载的任务
+				let lastProgressValue = 0;
+				let popupData = { progress: true, buttonNum: 2 };
+				let popupObj = appUpdate.downloadPopup(popupData);
+				dtask.addEventListener('statechanged', function(task, status) {
+					// 给下载任务设置一个监听 并根据状态  做操作
+					switch (task.state) {
+						case 1:
+							popupObj.change({
+								progressValue:0,
+								progressTip:"准备下载...",
+								progress: true
+							});
+							break;
+						case 2:
+							popupObj.change({
+								progressValue:0,
+								progressTip:"开始下载...",
+								progress: true
+							});
+							break;
+						case 3:
+							const progress = parseInt( task.downloadedSize / task.totalSize * 100);
+							if(progress - lastProgressValue >= 2){
+								lastProgressValue = progress;
+								popupObj.change({
+									progressValue:progress,
+									progressTip: "已下载" + progress + "%",
+									progress: true
+								});
+							}
+							break;
+						case 4:
+							plus.nativeUI.closeWaiting(); //下载完成
+							break;
+					}
+					// 取消下载
+					popupObj.cancelDownload = function(){
+						dtask && dtask.abort();
+						uni.showToast({title: "已取消下载",icon:"none"});
+						if( !appUpdateType ){ plus.runtime.quit(); } // 强制更新时 取消下载退出程序
+					}
+					// 重启APP
+					popupObj.reboot = function(){
+						plus.runtime.restart();
+					}
+				});
+			} catch (err) {
+				console.log('错误信息',err)
+				plus.nativeUI.closeWaiting();
+			}
+	    });
+	},
+	async updateAppPlus(vm) {
+	   let appName = await this.getAppName();
+	   plus.nativeUI.closeWaiting();
+	   uni.appUpdateProgress = 0;
+	   plus.nativeUI.showWaiting("下载中...");
+	   let filePath = await this.downloadAppPlus(vm,appName);
+	   plus.nativeUI.closeWaiting();
+	   plus.nativeUI.showWaiting("更新中...");
+	   plus.runtime.install(filePath, {}, function() {
+	       plus.nativeUI.closeWaiting();
+	   }, function(e) {
+	       plus.nativeUI.closeWaiting();
+	       plus.nativeUI.toast("安装失败[" + e.code + "]:" + e.message);
+	   }); 
+	},
 }
 export default kit
