@@ -8,25 +8,21 @@
 			:title-bold='titlebold'
 			:is-back="isBack"
 			:custom-back='customBack'>
-			<view v-if="isHome" class="homeStyle">
-			</view>
-			<u-icon
-				v-if="isHome"
-				name='home' 
-				color="#fff" 
-				size="20px" 
-				class="padding-lr-md"
-				style="border-left: 1px solid #fff;"
-				@tap='toHome'/>
-			<view class="flex flex-end flex-6 padding-right-md text-white" :style="'color:' + rightTextColor" v-if='!tempMode'>
-				<text @tap='click'>{{rightText}}</text>
-			</view>
-			<view class="flex flex-end flex-6 padding-right-md" v-if='tempMode'>
-				<template>
-					<slot name='theCustom'></slot>
-				</template>
-			</view>
-			
+				<view v-if='leftArea'>
+					<template>
+						<slot name='leftArea'></slot>
+					</template>
+				</view>
+				<!-- <view v-if="isHome" class="homeStyle"></view> -->
+				<!-- <u-icon name='home' color="#fff" size="20px" class="padding-lr-md" style="border-left: 1px solid #fff;" @tap='toHome'/> -->
+				<view class="flex flex-end flex-6 padding-right-md text-white" :style="'color:' + rightTextColor" v-if='!tempMode'>
+					<text @tap='click'>{{rightText}}</text>
+				</view>
+				<view class="flex flex-end flex-6 padding-right-md" v-if='tempMode'>
+					<template>
+						<slot name='theCustom'></slot>
+					</template>
+				</view>
 		</u-navbar>
 	</view>
 </template>
@@ -52,56 +48,59 @@
 	export default {
 		props:{
 			title : {
-				type : String || Number,
-				default:'标题'
+				type: [String, Number],
+				default: '标题'
 			},
 			titlebold : {
-				type : Boolean,
-				default:false
+				type: Boolean,
+				default: false
 			},
 			titleColor : {
-				type : String,
-				default:'#fff'
+				type: String,
+				default: '#fff'
 			},
 			isBack : {
-				type:Boolean,
-				default:true
+				type: Boolean,
+				default: true
 			},
 			isHome : {
-				type:Boolean,
-				default:false
+				type: Boolean,
+				default: false
 			},
 			rightText : {
-				type : String,
-				default:''
+				type: String,
+				default: ''
 			},
 			rightTextColor : {
-				type : String,
-				default:'#fff'
+				type: String,
+				default: '#fff'
 			},
 			backIconColor : {
 				type : String,
-				default:'#fff'
+				default: '#fff'
 			},
-			tempMode : {
+			tempMode: {
 				type : Boolean,
-				default:false
+				default: false
+			},
+			leftArea:{
+				type : Boolean,
+				default: false
 			},
 			shadowSwitch : {
 				type : Boolean,
-				default:false
+				default: false
 			},
 			customBack: {
 				type : Function,
 			}
 		},
 		data(){
-			return {
-			}
+			return {}
 		},
 		methods:{
 			click(){
-				this.$emit('click', this.title)
+				this.$emit( 'click', this.title )
 			}
 		},
 	}
