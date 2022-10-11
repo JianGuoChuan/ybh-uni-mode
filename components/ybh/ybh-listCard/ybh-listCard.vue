@@ -18,7 +18,7 @@
 					</view>
 				</view>
 			</view>
-			<view v-if="!btnsHidden">
+			<view>
 				<template>
 					<slot name='cardBtns' :item="item" :index="index"></slot>
 				</template>
@@ -33,6 +33,8 @@
 	* 	list ：卡片数据
 	* 	config ：卡片配置
 	* 	hideNullValue ： 空值隐藏开关
+	*   titleColor: 标题背景
+	*   titleTextColor: 标题文本颜色
 	*/
 	export default {
 		props:{
@@ -53,10 +55,6 @@
 			},
 			titleTextColor: {
 				type: String,
-			},
-			btnsHidden: {
-				type: Boolean,
-				default: false
 			},
 		}
 	}
