@@ -26,9 +26,18 @@
 				</view>
 				<view class="padding-tb-sm border-bottom-f1">
 					<view class="margin-bottom-sm"> <text class="margin-right-md">●</text> 支持修改标题栏背景颜色/文本颜色【默认主题色】 </view>
+					<ybh-listCard :config="config" :list='list' titleColor="green" titleTextColor="#FFF">
+						<template #cardBtns="{item,index}" >
+							<view class="flex padding-sm">
+								<button class="font-ms padding-lr-lgx">点赞</button>
+								<button class="font-ms padding-lr-lgx">留言</button>
+							</view>
+						</template>
+					</ybh-listCard>
 				</view>
 				<view class="padding-tb-sm border-bottom-f1">
 					<view class="margin-bottom-sm"> <text class="margin-right-md">●</text> 支持隐藏底部操作按钮组，按钮组修改自由 </view>
+					<ybh-listCard :config="config" :list='list' titleColor="#FFF" titleTextColor="#666"></ybh-listCard>
 				</view>
 				<view class="padding-tb-sm border-bottom-f1">
 					<view class="margin-bottom-sm"> <text class="margin-right-md">●</text> 支持uview图标与自定义图标灵活使用 </view>
