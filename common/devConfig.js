@@ -1,5 +1,5 @@
 export default {
-	baseUrl: 'http://36.111.178.205:9001',
+	baseUrl: 'http://localhost:9245',
 	version: '2.0.0',
 	updataTime: '2022-10-10',
 	updatahumen : '离谱',
@@ -68,6 +68,12 @@ export default {
 			icon : 'ybh-icon-graffiti',
 			key : 4,
 			path : '/pages/tools/signBoard'
+		},{
+			label : '图表',
+			desc: '图表、可视化分析',
+			icon : 'ybh-icon-line',
+			key : 5,
+			path : '/pages/tools/charts'
 		}
 	],
 	contectList : [
