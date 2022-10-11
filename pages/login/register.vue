@@ -2,7 +2,7 @@
 	<view>
 		<ybh-navbar title='注册'></ybh-navbar>
 		<view class="padding-tb-lgx padding-lr-40px topHeight">
-			<text class="font-bold font-lg">注册YBH-UNIAPP</text>
+			<text class="font-bold font-lg">注册体验账号</text>
 		</view>
 		<view class="padding-lr-40px">
 			<u-form :model="user" ref="uForm">
