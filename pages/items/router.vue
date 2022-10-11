@@ -69,22 +69,22 @@
 				routerListLv2 : [
 					{
 						label : '路由前进/跳转(延时)：',
-						content : 'this.$iipKit.delayToRouter(路径,时间,数据)',
+						content : 'this.$routes.delayToRouter(路径,时间,数据)',
 						key : 6
 					},
 					{
 						label : '路由回退(延时)：',
-						content : 'this.$iipKit.delayBack(时间,层数)',
+						content : 'this.$routes.delayBack(时间,层数)',
 						key : 7
 					},
 					{
-						label : '场景1：登录后延迟进入主页',
-						content : 'this.$iipKit.delayReLaunchRouter(路径,时间,数据)',
+						label : '场景1：登录后延迟进入目标页面',
+						content : 'this.$routes.delayReLaunchRouter(路径,时间,数据)',
 						key : 8
 					},
 					{
 						label : '场景2：登录后延迟进入tabar页',
-						content : 'this.$iipKit.delaySwitchTabRouter(路径,时间)',
+						content : 'this.$routes.delaySwitchTabRouter(路径,时间)',
 						key : 9
 					},
 				]
@@ -121,11 +121,11 @@
 				this.$routes.back(1);
 			},
 			delayToRouter(){
-				this.$iipKit.delayToRouter('/pages/other/router_page', 1000, { key: '路由delayToRouter方法'});
+				this.$routes.delayToRouter('/pages/other/router_page', 1000, { key: '路由delayToRouter方法'});
 			},
 			delayBack(){
 				console.log('回退的前提是存在可以回退的路由页，回退可能受redirect、reLaunch、switchTab影响导致原地刷新');
-				this.$iipKit.delayBack(1000, 1);
+				this.$routes.delayBack(1000, 1);
 			},
 		}
 	}
