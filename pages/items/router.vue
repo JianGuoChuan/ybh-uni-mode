@@ -69,22 +69,22 @@
 				routerListLv2 : [
 					{
 						label : '路由前进/跳转(延时)：',
-						content : 'this.$routes.delayToRouter(路径,时间,数据)',
+						content : 'this.$routes.delayToRouter(路径,延迟时间,数据,回调函数)',
 						key : 6
 					},
 					{
 						label : '路由回退(延时)：',
-						content : 'this.$routes.delayBack(时间,层数)',
+						content : 'this.$routes.delayBack(延迟时间,层数,回调函数)',
 						key : 7
 					},
 					{
 						label : '场景1：登录后延迟进入目标页面',
-						content : 'this.$routes.delayReLaunchRouter(路径,时间,数据)',
+						content : 'this.$routes.delayReLaunchRouter(路径,延迟时间,数据,回调函数)',
 						key : 8
 					},
 					{
 						label : '场景2：登录后延迟进入tabar页',
-						content : 'this.$routes.delaySwitchTabRouter(路径,时间)',
+						content : 'this.$routes.delaySwitchTabRouter(路径,延迟时间,回调函数)',
 						key : 9
 					},
 				]
