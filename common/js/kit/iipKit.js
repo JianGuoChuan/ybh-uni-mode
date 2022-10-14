@@ -3,6 +3,7 @@ import legalCheck from './legalCheck.js';
 import appUpdate from '@/common/js/appUpdate.js'; // 引入更新弹框生成方法库
 let appUpdateUrl = '';
 let appUpdateType = 1;
+import qrCode from '@/common/js/weapp-qrcode.js';
 // 版本比较 如果v1>v2返回 true
 function compareVersion(v1, v2) {
     try {
@@ -153,7 +154,23 @@ let kit = {
 		});
 		return oldPass
 	},
-    // 通用确认方法 @param {Object} content
+    qrCode(text, canvasId){
+		console.log(111);
+		new qrCode(canvasId, {
+			text: text,
+			width: 150,
+			height: 150,
+			colorDark: '#333333',
+			colorLight: '#FFFFFF',
+			correctLevel: qrCode.CorrectLevel.H
+		});
+		// if (canvasId == 'couponQrcode1') {
+		// 	setTimeout(() => {
+		// 		if (!this.show) {this.show = true;}
+		// 	}, 0);
+		// }
+	},
+	// 通用确认方法 @param {Object} content
     confirm(content, option = {}) {
         return new Promise((reslove, reject) => {
             option = Object.assign({
