@@ -94,7 +94,13 @@
 						code: "this.$iipKit.confirm(内容);",
 						info: '此方法可直接调用无需表现层代码绑定，调用uni内部方法直接进行模态框操作;',
 						experienceText: '立即显示'
-					}
+					},{
+						id: 11,
+						title: '二维码生成',
+						code: "this.$iipKit.qrCode(文本, 画板id);",
+						info: '此方法由将传入内容生成二维码',
+						experienceText: '立即生成'
+					},
 				]
 			}
 		},
