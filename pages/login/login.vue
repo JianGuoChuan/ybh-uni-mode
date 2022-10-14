@@ -43,7 +43,7 @@
 			<!-- 法律信息相关 -->
 			<view class="font-ms text-center margin-top-md text-darkgrey">
 				<text>未注册的手机号登录时将自动注册，且代表您已经同意</text></br>
-				<text class="text-underline margin-right-sm">用户协议</text>和<text class="text-underline margin-left-sm">隐私政策</text>
+				<text class="text-underline margin-right-sm">用户协议</text>和<text class="text-underline margin-left-sm" @tap='testLogin'>隐私政策</text>
 			</view>
 		</view>
 	</view>
@@ -123,20 +123,24 @@
 					this.loginText = '重新登录';
 					return
 				}
-				// 存储token
-				this.$u.vuex('vuex_token', res.data.token);
-				// 存储用户信息
-				this.$u.vuex( 'vuex_userinfo', {
-					username: res.data.username || '',
-					phone: res.data.phone || '',
-				})
-				this.$routes.delaySwitchTabRouter('/pages/home/home', 2000);
+				this.$routes.delaySwitchTabRouter('/pages/home/home', 2000, ()=>{
+					// 存储token
+					this.$u.vuex('vuex_token', res.data.token);
+					// 存储用户信息
+					this.$u.vuex( 'vuex_userinfo', {
+						username: res.data.username || '',
+						phone: res.data.phone || '',
+					})
+				});
 			},
 			changeLoginState(){
 				this.$iipKit.toast('账号密码登录触发了');
 			},
 			register(){
 				this.$routes.to('/pages/login/register')
+			},
+			testLogin(){
+				this.$routes.switchTab('/pages/home/home');
 			}
 		},
 		onUnload() {
