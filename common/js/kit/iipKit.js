@@ -371,9 +371,8 @@ let kit = {
 		// var currVersion = plus.runtime.version;
 		// ----------------------------------------
 		// 后台获取是否存在需更新版本
-		// let { data:versionInfo } = await vm.$api.otherApi.checkAPPVersion({ appName });
 		let { data:versionInfo } = await vm.$api.otherApi.checkVersion('/checkVersion');
-		// let versionInfo = { minVersionCode: '1.0.0', maxVersionCode: '13.3.14', appDownloadUrl: '', updateInfo: '修复已知Bug'}; // 模拟数据
+		// let versionInfo = { data: {minVersion: '1.0.0', maxVersion: '2.0.1', updateContent: '', updateContent: '修复已知Bug'}}; // 模拟数据
 		var minVersion = versionInfo.data.minVersion || '1.0.0';
 		var maxVersion = versionInfo.data.maxVersion || '1.0.0';
 		var updateInfo = versionInfo.data.updateContent || '修复已知Bug';
