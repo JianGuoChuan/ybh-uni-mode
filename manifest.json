@@ -1,9 +1,9 @@
 {
-    "name" : "sh-app",
+    "name" : "ybh-uni-mode",
     "appid" : "__UNI__7D59D53",
-    "description" : "多平台快速开发的UI框架",
-    "versionName" : "1.8.4",
-    "versionCode" : "100",
+    "description" : "多平台跨端快速开发UI框架",
+    "versionName" : "2.0.0",
+    "versionCode" : 200,
     "transformPx" : false,
     "app-plus" : {
         // APP-VUE分包，可提APP升启动速度，2.7.12开始支持，兼容微信小程序分包方案，默认关闭
@@ -25,7 +25,8 @@
         "nvueCompiler" : "uni-app",
         "compilerVersion" : 3,
         "modules" : {
-            "Bluetooth" : {}
+            "Bluetooth" : {},
+            "Maps" : {}
         },
         "distribute" : {
             "android" : {
@@ -53,11 +54,17 @@
                     "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>",
                     "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
                 ],
-                "abiFilters" : [ "armeabi-v7a", "arm64-v8a" ]
+                "abiFilters" : [ "armeabi-v7a", "arm64-v8a", "x86" ]
             },
             "ios" : {},
             "sdkConfigs" : {
-                "ad" : {}
+                "ad" : {},
+                "maps" : {
+                    "amap" : {
+                        "appkey_ios" : "",
+                        "appkey_android" : "9d725f6e9033162410286bd42a6a905b"
+                    }
+                }
             },
             "icons" : {
                 "android" : {
@@ -131,7 +138,7 @@
     "h5" : {
         "template" : "template.h5.html",
         "router" : {
-            "mode" : "hash",
+            "mode" : "history",
             "base" : ""
         },
         "optimization" : {
@@ -139,6 +146,13 @@
                 "enable" : false
             }
         },
-        "title" : "uView UI"
+        "title" : "ybh-uni-mode",
+        "sdkConfigs" : {
+            "maps" : {
+                "qqmap" : {
+                    "key" : "K6ZBZ-LSPEJ-WR3FU-FNZIH-IM6DQ-BXFFH"
+                }
+            }
+        }
     }
 }
