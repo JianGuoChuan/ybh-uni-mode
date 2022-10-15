@@ -74,6 +74,12 @@ export default {
 			icon : 'ybh-icon-line',
 			key : 5,
 			path : '/pages/tools/charts'
+		},{
+			label : '地图',
+			desc: '地图功能示例',
+			icon : 'ybh-icon-map',
+			key : 6,
+			path : '/pages/tools/map'
 		}
 	],
 	contectList : [
