@@ -6,6 +6,9 @@ const otherApi = function(vm) {
 		checkVersion() {
 			return vm.$u.get('/checkVersion');
 		},
+		searchPlace(data) {
+			return vm.$u.get('/search/place', data);
+		},
 	}
 };
 export default otherApi;
