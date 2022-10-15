@@ -49,7 +49,6 @@ const toast = function(msg) {
 }; 
 // 消息监听
 uni.$on('requestUnhandledRejection', function(event) {
-	console.log(event);
     if (catchCount.last > 1) { return;}
 	if( !event || event.errMsg && event.statusCode != 200){
 		toast('请检查服务是否开启');
