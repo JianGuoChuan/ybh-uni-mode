@@ -300,6 +300,14 @@
 				}
 			}
 		},{
+			"path": "pages/tools/map",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		},{
 			"path": "pages/other/router_page",
 			"style": {
 				"navigationStyle": "custom",
