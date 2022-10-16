@@ -336,18 +336,18 @@
 		"list" : [
 			{
 				"pagePath": "pages/home/home",
-				"iconPath": "static/img/home.png",
-				"selecticonPath": "static/img/logo.png",
+				"iconPath": "static/img/tabbar/home.png",
+				"selectedIconPath": "static/img/tabbar/homeFill.png",
 				"text": "首页"
 			}, {
 				"pagePath": "pages/items/index",
-				"iconPath": "static/img/sort.png",
-				"selecticonPath": "static/img/logo.png",
+				"iconPath": "static/img/tabbar/function.png",
+				"selectedIconPath": "static/img/tabbar/functionFill.png",
 				"text": "功能"
 			}, {
 				"pagePath": "pages/tools/index",
-				"iconPath": "static/img/tools.png",
-				"selecticonPath": "static/img/logo.png",
+				"iconPath": "static/img/tabbar/tools.png",
+				"selectedIconPath": "static/img/tabbar/toolsFill.png",
 				"text": "工具"
 			}
 		]
