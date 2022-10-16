@@ -430,6 +430,42 @@
 						code: 'manager',
 						name: '管理',
 						icon: 'ybh-icon-manager'
+					},{
+						code: 'cut',
+						name: '剪切',
+						icon: 'ybh-icon-cut'
+					},{
+						code: 'activity',
+						name: '活动',
+						icon: 'ybh-icon-activity'
+					},{
+						code: 'money',
+						name: '金额',
+						icon: 'ybh-icon-money'
+					},{
+						code: 'roast',
+						name: '吐槽',
+						icon: 'ybh-icon-roast'
+					},{
+						code: 'mouse',
+						name: '鼠标',
+						icon: 'ybh-icon-mouse'
+					},{
+						code: 'keyboard',
+						name: '键盘',
+						icon: 'ybh-icon-keyboard'
+					},{
+						code: 'pay',
+						name: '支付',
+						icon: 'ybh-icon-pay'
+					},{
+						code: 'bad',
+						name: '呕吐',
+						icon: 'ybh-icon-bad'
+					},{
+						code: 'smiling',
+						name: '笑脸',
+						icon: 'ybh-icon-smiling'
 					},
 				]
 			}
