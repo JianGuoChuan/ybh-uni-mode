@@ -1,3 +1,4 @@
+// 日期格式化
 function padLeftZero(str) {
 	return ('00' + str).substr(str.length)
 }

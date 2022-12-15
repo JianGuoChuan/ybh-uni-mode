@@ -1,16 +1,13 @@
-//Core code comes from https://github.com/davidshimjs/qrcodejs
+//生成二维码工具
 
 var QRCode;
 
 (function () {
-    /**
-         * Get the type by string length
-         * 
-         * @private
-         * @param {String} sText
-         * @param {Number} nCorrectLevel
-         * @return {Number} type
-         */
+    /** * Get the type by string length* 
+		@private* @param {String} sText* 
+		@param {Number} nCorrectLevel* 
+		@return {Number} type
+	*/
     function _getTypeNumber(sText, nCorrectLevel) {
         var nType = 1;
         var length = _getUTF8Length(sText);
