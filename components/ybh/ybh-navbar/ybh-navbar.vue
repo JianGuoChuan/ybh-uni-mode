@@ -2,7 +2,7 @@
 	<view :class="shadowSwitch ? 'shadow-xs-bottom' : '' " style="position: relative;">
 		<u-navbar 
 			:title="title" 
-			:background="vuex_themeColor.colorCode ? {background : vuex_themeColor.colorCode} : {background : 'linear-gradient(45deg, #0081ff, #1cbbb4)'}" 
+			:background="{ backgroundImage: vuex_themeColor.colorCode || 'linear-gradient(45deg, #0081ff, #1cbbb4)' }"
 			:title-color="titleColor" 
 			:back-icon-color='backIconColor' 
 			:title-bold='titlebold'

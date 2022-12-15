@@ -7,7 +7,7 @@
 				<view class="ybh-modal-content" :class="[title ? '' : 'ybh-mtop']" :style="{ color: color, fontSize: size + 'rpx' }">
 					{{ content }}
 					<view v-if="scanInput" class="flex space-between">
-						<u-input v-model="value" type="text" border="border" height="55" :focus='true' :placeholder="placeholder"/>
+						<u-input style='width: 100%' v-model="value" type="text" border="border" height="55" :focus='true' :placeholder="placeholder"/>
 						<view class="text-left padding-top-sm padding-left-sm">
 							<u-icon name='scan' size="35" @tap='scan'/>
 						</view>

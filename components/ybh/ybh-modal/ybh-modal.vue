@@ -13,7 +13,7 @@
 					<text :style="{fontSize : titleSize}">{{title}}</text>
 				</view>
 				<view class="padding-lr-lg padding-tb-lg flex space-between">
-					<u-input v-model="value" :type="inputType" border="border" height="55" :focus='aotoFocus' :placeholder="placeholder"/>
+					<u-input style='width: 100%' v-model="value" :type="inputType" border="border" height="55" :focus='aotoFocus' :placeholder="placeholder"/>
 					<view class="text-left padding-top-sm padding-left-sm" v-if="scanMode">
 						<u-icon name='scan' size="35" @tap='scan'/>
 					</view>
