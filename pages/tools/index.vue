@@ -27,6 +27,10 @@
 		},
 		methods: {
 			toMenuPage(item) {
+				if(item.hide){
+					this.$iipKit.toast('此为进阶功能，仅支持查看源码')
+					return
+				}
 				this.$routes.to(item.path)
 			}
 		}
