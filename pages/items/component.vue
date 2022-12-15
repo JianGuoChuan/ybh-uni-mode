@@ -7,16 +7,15 @@
 				<u-icon name='question-circle-fill' class="padding-lr-md text-bdBlue font-lg"></u-icon>
 				<text class="font-com">使用说明：</text>
 			</view>
-			<view class="text-indent font-sm">基于<strong>uniapp</strong>与<strong>uView1.0</strong>
+			<view class="text-indent font-sm">基于<text class="font-bold">uniapp</text>与<text class="font-bold">uView1.0</text>
 				做二次整合，包含了一些强化定制后的常用组件，用来满足多变的业务需求，页面仅作功能演示、具体参数请查看源代码。</view>
 		</view>
 		
 		<view class="padding-lg">
-			
 			<view v-for="item in componentList" :key='item.id' @tap='to(item)' class="margin-bottom-md">
 				<view class="margin-bottom-sm">
 					<text class="margin-right-md">●</text>
-					<text class="font-bold font-com text-underline text-base-color"> <i>{{ item.title }}</i> </text>
+					<text class="font-bold font-com text-underline text-base-color font-italic"> {{ item.title }} </text>
 				</view>
 				<view class="padding-left-md">
 					<text>组件描述：</text>
