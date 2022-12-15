@@ -150,7 +150,7 @@
 	}
 </script>
 <style scoped lang="scss">
-	.topHeight{ margin-top: 60px; }
+	.topHeight{ padding-top: 60px; }
 	.logoStyle{width: 100px;height: 100px;}
 	.formStyle{padding: 10px 25px;}
 	.button-round{border-radius: 50px;font-size: 16px;border-width: 1px;border-style: solid;}
