@@ -1,6 +1,6 @@
 <template>
 	<view class="">
-		<ybh-userCard paddingTop='30' height='160' contentHeight='120' @set='show = true' @scan='scan' @notice='notice'>
+		<ybh-userCard paddingTop='40' height='170' contentHeight='120' @set='show = true' @scan='scan' @notice='notice'>
 			<template v-slot:userCardContent>
 				<view class="flex">
 					<view class="padding-top-lgx padding-right-lgx padding-left-md border-right-f1" style='height: 120px;'>
@@ -35,7 +35,7 @@
 		</view>
 		<ybh-themeSys :visible.sync='themeSysShow'></ybh-themeSys>
 		<u-popup v-model="show" width="60%" border-radius='15' duration='200' z-index='10000'>
-			<view class="padding-top-lgx margin-top-lgx">
+			<view style='padding-top: 70px;'>
 				<view class="padding-bottom-lgx text-center">
 					<view>
 						<image :src="src" class="logoStylePop"></image>
