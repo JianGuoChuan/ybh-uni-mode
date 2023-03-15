@@ -4,7 +4,7 @@
 		<view class="padding-tb-lg text-center topHeight">
 			<image :src="src" class="logoStyle" @click="showHttpAddress"></image>
 			<view class="font-md font-bold">ybh-uniUI</view>
-			<text class="text-gray">项目快速起步</text>
+			<text class="text-gray">让项目快速起步</text>
 		</view>
 		<!-- 信息录入区域 -->
 		<view class="formStyle">
