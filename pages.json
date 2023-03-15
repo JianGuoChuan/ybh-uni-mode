@@ -1,0 +1,355 @@
+{
+	"easycom": {
+		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue",
+		"^ybh-(.*)": "@/components/ybh/ybh-$1/ybh-$1.vue"
+	},
+	"pages": [
+		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/login/register",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/home/home",
+			"style": {
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/items/index",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		}, {
+			"path": "pages/items/router",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		}, {
+			"path": "pages/items/request",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		}, {
+			"path": "pages/items/vuex",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		}, {
+			"path": "pages/items/component",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		}, {
+			"path": "pages/items/icons",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		}, {
+			"path": "pages/items/function",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/items/components/navbar",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/items/components/themeSys",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/items/components/modal",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/items/components/modalPlus",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/items/components/searchbar",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/items/components/button",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/items/components/inputBox",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/items/components/loading",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/items/components/swiperBox",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/items/components/imageModal",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/items/components/listItem",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/items/components/listCard",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/items/components/fab",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/items/components/collapse",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/items/components/views",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/tools/index",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/tools/indexList",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/tools/mugenTree",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/tools/calendar",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/tools/signBoard",
+			"style": {
+			    "navigationBarTitleText": "签名",
+				"navigationBarBackgroundColor" : "#1296db",
+				"navigationBarTextStyle" : "white",
+				"disableScroll" : true,
+			    "app-plus": {
+			        "bounce": false,
+			        "titleNView": {
+			            "splitLine": true
+			        }
+			    }
+			}
+		},{
+			"path": "pages/tools/charts",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/tools/charts/column",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/tools/charts/line",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/tools/charts/pie",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/tools/charts/gauge",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/tools/charts/candle",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/tools/map",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/other/router_page",
+			"style": {
+				"navigationStyle": "custom",
+				"h5":{
+					"titleNView":false
+				}
+			}
+		}
+	],
+	// 分包文件
+	"subPackages" : [{
+		"root" :"subpkg",
+		"pages" : []
+	}],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "ybh-uniapp",
+		"navigationBarBackgroundColor": "#FFFFFF",
+		"backgroundColor": "#FFFFFF"
+	},
+	"tabBar": {
+		"color" : "#999",
+		"selectedColor": "#009ad6",
+		"borderStyle": "black",
+		"backgroundColor": "#f8f8f8",
+		"list" : [
+			{
+				"pagePath": "pages/home/home",
+				"iconPath": "static/img/tabbar/home.png",
+				"selectedIconPath": "static/img/tabbar/homeFill.png",
+				"text": "首页"
+			}, {
+				"pagePath": "pages/items/index",
+				"iconPath": "static/img/tabbar/function.png",
+				"selectedIconPath": "static/img/tabbar/functionFill.png",
+				"text": "功能"
+			}, {
+				"pagePath": "pages/tools/index",
+				"iconPath": "static/img/tabbar/tools.png",
+				"selectedIconPath": "static/img/tabbar/toolsFill.png",
+				"text": "工具"
+			}
+		]
+	}
+}
